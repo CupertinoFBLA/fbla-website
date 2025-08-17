@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 0 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 50% 15%;
+
+    --primary: 0 50% 25%;
+    --primary-foreground: 45 100% 85%;
+
+    --secondary: 45 100% 88%;
+    --secondary-foreground: 0 50% 15%;
+
+    --muted: 45 20% 95%;
+    --muted-foreground: 0 10% 45%;
+
+    --accent: 45 100% 70%;
+    --accent-foreground: 0 50% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 45 20% 90%;
+    --input: 45 20% 95%;
+    --ring: 0 50% 25%;
+
+    --radius: 1rem;
+
+    /* Tech gradients */
+    --gradient-tech: linear-gradient(135deg, hsl(0 50% 25%) 0%, hsl(0 30% 15%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 70%) 0%, hsl(45 80% 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(45 30% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-tech: 0 25px 50px -12px hsl(0 50% 25% / 0.25);
+    --shadow-glow: 0 0 40px hsl(45 100% 70% / 0.3);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 45 100% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 45 100% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 45 100% 95%;
+
+    --primary: 0 50% 45%;
+    --primary-foreground: 45 100% 95%;
+
+    --secondary: 0 10% 15%;
+    --secondary-foreground: 45 100% 85%;
+
+    --muted: 0 10% 12%;
+    --muted-foreground: 45 20% 65%;
+
+    --accent: 45 100% 65%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 45 100% 95%;
+
+    --border: 0 10% 20%;
+    --input: 0 10% 15%;
+    --ring: 45 100% 70%;
+
+    /* Dark mode tech gradients */
+    --gradient-tech: linear-gradient(135deg, hsl(0 50% 45%) 0%, hsl(0 30% 25%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 65%) 0%, hsl(45 80% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 10% 12%) 100%);
+    
+    /* Dark shadows */
+    --shadow-tech: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(45 100% 65% / 0.2);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .tech-card {
+    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-card via-card to-muted/50;
+    @apply border border-border/50 backdrop-blur-sm;
+    box-shadow: var(--shadow-tech);
+  }
+  
+  .tech-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5;
+    @apply opacity-0 transition-opacity duration-300;
+  }
+  
+  .tech-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  .tech-button {
+    @apply relative inline-flex items-center justify-center rounded-xl px-8 py-3;
+    @apply bg-gradient-to-r from-primary to-primary/80 text-primary-foreground;
+    @apply border border-primary/20 font-medium transition-all duration-300;
+    @apply hover:scale-105 hover:shadow-lg hover:shadow-primary/25;
+  }
+  
+  .tech-button::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-transparent;
+    @apply opacity-0 transition-opacity duration-300;
+  }
+  
+  .tech-button:hover::before {
+    @apply opacity-100;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+  
+  .glow-effect {
+    filter: drop-shadow(0 0 20px hsl(var(--accent) / 0.5));
+  }
+}
